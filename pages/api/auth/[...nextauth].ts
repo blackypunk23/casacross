@@ -28,10 +28,10 @@ export default NextAuth({
     }),
 
 
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
+    // GithubProvider({
+    //   clientId: process.env.GITHUB_ID,
+    //   clientSecret: process.env.GITHUB_SECRET,
+    // }),
 
 
   ],
@@ -82,7 +82,7 @@ export default NextAuth({
     async session({ session, token, user }){
       // console.log({ session, token, user });
 
-      session.accessToken = token.accessToken;
+      // session.accessToken = token.accessToken;
       session.user = token.user as IUser;
       
 
