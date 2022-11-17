@@ -1,3 +1,4 @@
+import { FlashAuto } from '@mui/icons-material';
 import mongoose, { Schema, model, Model} from 'mongoose'
 
 import { ICliente } from '../interfaces'
@@ -8,8 +9,8 @@ const clienteSchema = new Schema({
     empresa: { type: String, required: true },
     cedula: { type: String, required: true },
     telefono: { type: String, required: true },
-    direccion: { type: String, required: true },
-    sexo: { type: String, required: true },
+    direccion: { type: String, required: false },
+    
     
 })
 

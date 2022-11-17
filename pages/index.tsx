@@ -8,7 +8,7 @@ const HomePage: NextPage = () => {
 
   return(
     <MainLayout title='Casa Cross' pageDescription='Clientes CC' >
-    <Typography variant='h1' component='h1'>CC</Typography>
+    {/* <Typography variant='h1' component='h1'>CC</Typography> */}
   </MainLayout>
 
 

@@ -24,7 +24,7 @@ export default function handler( req: NextApiRequest, res: NextApiResponse){
 }
 const  crearCliente = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const {user_id, nombre, empresa, cedula, telefono, direccion, sexo, } = req.body 
+    const {user_id, nombre, empresa, cedula, telefono, direccion,  } = req.body 
 
     await db.connect();
 
@@ -35,8 +35,8 @@ const  crearCliente = async(req: NextApiRequest, res: NextApiResponse<Data>) => 
         empresa,
         cedula,
         telefono,
-        direccion,
-        sexo
+        direccion
+    
     });
 
     try {

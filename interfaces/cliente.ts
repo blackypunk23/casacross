@@ -8,5 +8,5 @@ export  interface ICliente {
     cedula: string;
     telefono: string;
     direccion: string;
-    sexo: string;
+  
   };
