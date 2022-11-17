@@ -41,7 +41,7 @@ export const Navbar = () => {
           </Link>
         </NextLink> */}
 
-        <Box  display="flex" alignItems="center" >
+        <Box  sx={{ justifyContent: 'space-between' }} display="flex" alignItems="center" >
           <Image src={Logo} width="250" height="100" alt="cc" />
         </Box>
 
