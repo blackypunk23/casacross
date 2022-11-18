@@ -29,8 +29,6 @@ const  crearCliente = async(req: NextApiRequest, res: NextApiResponse<Data>) => 
 
     const {user_id, nombre, empresa, cedula, telefono, direccion,  } = req.body.cliente 
 
-    console.log('req.body', req.body)
-
     await db.connect();
 
 
@@ -43,7 +41,7 @@ const  crearCliente = async(req: NextApiRequest, res: NextApiResponse<Data>) => 
         direccion    
     });
 
-    console.log('DATA  a crear'+newCliente );
+ 
 
     try {
         await newCliente.save({validateBeforeSave: true})

@@ -1,18 +1,7 @@
 import  { FC, useContext} from "react";
-import {
-  Typography,
-  Box,
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  SelectChangeEvent,
-  MenuItem,
-} from "@mui/material";
+import {  Typography,  Box,  Grid,  TextField,  Button,} from "@mui/material";
 import { useForm } from "react-hook-form";
-import { UiContext } from "../../context";
+import { AuthContext, UiContext } from "../../context";
 
 
 
@@ -25,14 +14,16 @@ type FormData = {
   vin: string
 }
 
-interface Props {
-  id: string; 
-}
 
 
-export const CarInfo: FC<Props> = ( {id}) => {
 
-  const { crearCar } = useContext(UiContext)
+export const CarInfo: FC = ( ) => {
+
+   const { user } = useContext(AuthContext);
+  // console.log('from caringo',user)
+  const {crearCar} = useContext(UiContext); 
+
+  // let userdata = JSON.parse(JSON.stringify(user)); 
 
   const {
     register,
@@ -41,7 +32,7 @@ export const CarInfo: FC<Props> = ( {id}) => {
     reset,
   } = useForm<FormData>({
     defaultValues: {
-       user_id: id,
+       user_id: '',
        placa: '',
        marca: '',
        modelo: '',
@@ -51,8 +42,16 @@ export const CarInfo: FC<Props> = ( {id}) => {
   });
 
   const onSubmitCar = (data: FormData) => {
-    console.log('onSubmit', data);
-    crearCar(data)
+const { placa, marca, modelo, year, vin } = data
+let userdata = JSON.parse(JSON.stringify(user)); 
+    let newdata = {
+      user_id: userdata.id ,
+      placa,
+      marca, modelo, year, vin 
+
+    }
+    console.log('onSubmit', newdata);
+     crearCar(newdata)
   };
 
 
@@ -61,7 +60,7 @@ export const CarInfo: FC<Props> = ( {id}) => {
 
     <Box sx={{ pt: 2 }}>
       <Typography variant="h6">
-       Registra tus vehiculos para tener una atencion mas personalizada
+        Registra tus vehiculos para tener una atencion mas personalizada
       </Typography>
 
       <form onSubmit={handleSubmit(onSubmitCar)}>

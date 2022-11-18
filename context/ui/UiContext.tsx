@@ -7,6 +7,8 @@ import { ICar } from '../../interfaces';
 
 interface ContextProps {
     isMenuOpen: boolean;
+    cliente: ICliente;
+    cars: ICar[]
     
 
     // Methods

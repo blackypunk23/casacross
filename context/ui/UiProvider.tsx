@@ -8,8 +8,8 @@ import { tesloApi } from '../../api';
 
 export interface UiState {
     isMenuOpen: boolean;
-    cliente : ICliente | undefined;
-    car : ICar | undefined;
+    cliente : ICliente ;
+    cars : ICar[];
     
 }
 
@@ -20,8 +20,15 @@ type reactChildren = {
 
 const UI_INITIAL_STATE: UiState = {
     isMenuOpen: false,
-    cliente: undefined  ,
-    car: undefined
+    cliente: {
+        user_id: '',
+        nombre: '',
+        cedula: '',
+        direccion:'',
+        empresa: '',
+        telefono: ''
+    }  ,
+    cars: [],
     
 }
 
@@ -104,7 +111,6 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
     return (
         <UiContext.Provider value={{
             ...state,
-
             // Methods
             toggleSideMenu,
             crearCliente,

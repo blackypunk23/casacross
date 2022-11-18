@@ -1,4 +1,3 @@
-import { FlashAuto } from '@mui/icons-material';
 import mongoose, { Schema, model, Model} from 'mongoose'
 
 import { ICliente } from '../interfaces'

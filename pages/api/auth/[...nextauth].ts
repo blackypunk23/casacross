@@ -86,7 +86,7 @@ export default NextAuth({
       // console.log({ session, token, user });
         
       // session = token.accessToken ;
-      console.log('desde session',token)
+      
       // session.user = token
       
       

@@ -23,25 +23,15 @@ type FormData = {
   direccion: string; 
 };
 
-type userData ={
-  id: string
-  name: string
-  email : string
-}
+
 
 
 const ClientForm:FC = () => {
 
   const { user } = useContext(AuthContext);
-  const {crearCliente} = useContext(UiContext)
+    const {crearCliente} = useContext(UiContext); 
 
-  
-
-  let userdata = JSON.parse(JSON.stringify(user));
-
-
-
- 
+  let userdata = JSON.parse(JSON.stringify(user)); 
 
   const empresas = ["BANPRO","ALMEXSA","PROVALORES"]
 

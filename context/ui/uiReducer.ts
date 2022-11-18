@@ -6,7 +6,7 @@ import { ICliente, ICar } from '../../interfaces';
 type UiActionType = 
    | { type: '[UI] - ToggleMenu' } 
    | { type: '[UI] - getUser', payload: ICliente } 
-   |  {type: '[UI] - insertCar', payload: ICar }
+   |  {type: '[UI] - insertCar', payload: ICar[] }
 
 
 export const uiReducer = ( state: UiState, action: UiActionType ): UiState => {
@@ -26,7 +26,7 @@ export const uiReducer = ( state: UiState, action: UiActionType ): UiState => {
       case '[UI] - insertCar':
          return {
             ...state,
-            car:  action.payload 
+            cars:  [...action.payload] 
          }
 
 

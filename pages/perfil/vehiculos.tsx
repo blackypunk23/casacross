@@ -23,22 +23,17 @@ const VehiculosPage: NextPage = () => {
     <MainLayout title={"Casa Cross"} pageDescription={"Perfil"}>
 
       <Paper elevation={4} sx={{padding: 3}}>
-{/*       
-      <Typography variant="h1" component="h1">
-        Bienvenido: {user.name}
-      </Typography>
-
-      <Divider />
+     
+      
 
 
       <Grid>
 
-        
+        <CarInfo />
 
-        <CarInfo id={idcliente} />
-        <Divider sx={{p: 1}} />
-        <ListCars usercars={cars}/>
-      </Grid> */}
+        
+ 
+      </Grid> 
         
       </Paper>
 
