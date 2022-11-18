@@ -4,6 +4,7 @@ import Credentials from 'next-auth/providers/credentials';
 
 import { dbUsers } from '../../../database';
 import { IUser } from '../../../interfaces/user';
+import { Session } from 'inspector';
 
 
 export default NextAuth({
@@ -83,14 +84,27 @@ export default NextAuth({
 
     async session({ session, token, user }){
       // console.log({ session, token, user });
-
-      // session.accessToken = token.accessToken;
-      session.user = token.user as IUser;
+        
+      // session = token.accessToken ;
+      console.log('desde session',token)
+      // session.user = token
+      
       
 
-      // console.log('ddddddd: ' + JSON.stringify( session));
+      //  console.log('ddddddd: ' + JSON.stringify( session));
+
+      // return JSON.parse(JSON.stringify(session)) ;
+      // if(token){
+
+      //   session.user = token.user as any
+      // }
+      session.accessToken = token.accessToken;
+      session.user = token.user as any;
 
       return session;
+
+      
+     
     }
     
 

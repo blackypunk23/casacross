@@ -6,6 +6,7 @@ import { ICliente } from '../../../interfaces/cliente';
 import Cliente from '../../../models/Cliente';
 
 
+
 type Data = | { message: string} 
 | {cliente: ICliente}
 
@@ -24,20 +25,25 @@ export default function handler( req: NextApiRequest, res: NextApiResponse){
 }
 const  crearCliente = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    const {user_id, nombre, empresa, cedula, telefono, direccion,  } = req.body 
+    
+
+    const {user_id, nombre, empresa, cedula, telefono, direccion,  } = req.body.cliente 
+
+    console.log('req.body', req.body)
 
     await db.connect();
 
 
     const newCliente = new Cliente({
-        user_id,
+        user_id ,
         nombre,
         empresa,
         cedula,
         telefono,
-        direccion
-    
+        direccion    
     });
+
+    console.log('DATA  a crear'+newCliente );
 
     try {
         await newCliente.save({validateBeforeSave: true})

@@ -173,6 +173,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query }) => 
     
     const session = await getSession({ req });
     // console.log({session});
+    // console.log('variable de entorno'+ ' ' + process.env.NEXTAUTH_URL);
 
     const { p = '/' } = query;
 

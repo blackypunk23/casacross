@@ -16,14 +16,15 @@ import { CarInfo } from "../../components/client";
 
 import { AuthContext } from '../../context/'
 import {useContext} from 'react';
+import { env } from "process";
 
-interface Props {
-  user?: IUser;
-  // cliente?: ICliente ;
-  // info: boolean;
-}
+// interface Props {
+//   user?: IUser;
+//   // cliente?: ICliente ;
+//   // info: boolean;
+// }
 
-const PerfilPage: NextPage<Props> = () => {
+const PerfilPage: NextPage = () => {
 
   const {user} = useContext(AuthContext);
 
@@ -42,7 +43,7 @@ const PerfilPage: NextPage<Props> = () => {
 
       <Divider />
 
-      {user ? <ClientForm userdata={user} /> : null}
+      {user ? <ClientForm  /> : null}
 
       
 
@@ -70,25 +71,26 @@ const PerfilPage: NextPage<Props> = () => {
 
 export default PerfilPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+// export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
     
-  const session = await getSession({ req });
-  // console.log({session});
+//   const session = await getSession({ req });
+  
+//   console.log('props',{session});
 
-  const { p = '/auth/login' } = query;
+//   const { p = '/auth/login' } = query;
   
 
  
-  if (!session ) {
-    return {
-        redirect: {
-            destination: p.toString(),
-            permanent: false
-        }
-    }
-}
-  return {
-      props: { }
-  }
-}
+//   if (!session ) {
+//     return {
+//         redirect: {
+//             destination: p.toString(),
+//             permanent: false
+//         }
+//     }
+// }
+//   return {
+//       props: { }
+//   }
+// }
 

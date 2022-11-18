@@ -12,10 +12,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
-
-import { ICliente } from '../../interfaces/cliente';
-
-
+import { AuthContext, UiContext } from "../../context";
 
 type FormData = {
   user_id: string;
@@ -23,25 +20,28 @@ type FormData = {
   empresa: string;
   cedula: string;
   telefono: string;
-  direccion: string;
- 
+  direccion: string; 
 };
 
-interface Props {
-  userdata : {
-    id?: string,
-    email: string,
-    name: string
-  } ;
-  // clientedata: ICliente; 
- 
+type userData ={
+  id: string
+  name: string
+  email : string
 }
 
 
-const ClientForm: FC<Props> = ({ userdata}) => {
+const ClientForm:FC = () => {
 
-  console.log('clientform', userdata);
+  const { user } = useContext(AuthContext);
+  const {crearCliente} = useContext(UiContext)
+
   
+
+  let userdata = JSON.parse(JSON.stringify(user));
+
+
+
+ 
 
   const empresas = ["BANPRO","ALMEXSA","PROVALORES"]
 
@@ -53,9 +53,9 @@ const ClientForm: FC<Props> = ({ userdata}) => {
   } = useForm<FormData>({
     defaultValues: {
      
-       user_id: userdata?.id,
-      nombre: userdata?.name,
-      empresa:  '',
+      user_id: userdata.id,
+      nombre: userdata.name,
+      empresa:  "",
       cedula:   "",
       telefono:  "",
       direccion: "",
@@ -65,6 +65,7 @@ const ClientForm: FC<Props> = ({ userdata}) => {
 
     const onSubmitClientForm = (data: FormData) => {
     console.log('datos a guardar', data)
+    crearCliente(data);
   };
 
   return (

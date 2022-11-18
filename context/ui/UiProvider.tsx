@@ -5,6 +5,7 @@ import axios from 'axios';
 import { tesloApi } from '../../api';
 
 
+
 export interface UiState {
     isMenuOpen: boolean;
     cliente : ICliente | undefined;
@@ -43,6 +44,7 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
 
     const crearCliente = async(cliente: ICliente): Promise<{hasError: boolean; message?: string}> => {
 
+        console.log('desde creacliente', JSON.stringify(cliente))
         try {
 
             const {data} = await tesloApi.post('/cliente/agregar', {cliente})
@@ -57,7 +59,7 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
             if ( axios.isAxiosError(error) ) {
                 return {
                     hasError: true,
-                    message: error.response?.data.message
+                    message: error.response?.data.message 
                 }
             }
 
