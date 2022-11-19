@@ -7,30 +7,37 @@ import { ICar } from '../../interfaces';
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, ListItem, Paper, Typography } from '@mui/material';
 import Logocc from '../../public/cc/CC-logo-White.png'
 import Image from 'next/image'
+import {useContext} from 'react';
+import { UiContext } from '../../context';
 
  interface Props {
   usercars: ICar[];
   
 }
 
-interface Propscar {
- 
+interface Propscar { 
   car: ICar;
 
 }
-const ListCars:FC<Props> = ( {usercars} ) => {
+const ListCars:FC = ( ) => {
 
-  console.log('desde list cars', usercars)
+  const { cars} = useContext(UiContext);
+
+  console.log('CARS:',cars)
+
+
+
+  
   return (
     <Paper elevation={3} sx={{p: 3}}>
 
       <Typography variant='h6' align={'center'} sx={{p:1}} > Lista de Vehiculos Registrados</Typography>
       
-      <Grid container spacing={2} >
+      <Grid container spacing={2} padding={1}>
 
-        {usercars ? 
+        {cars ? 
           
-          usercars.map( (carrito) => (
+          cars.map( (carrito) => (
             <CardCar key={carrito.placa}  car={carrito} />
           ))
         :
@@ -50,7 +57,7 @@ const CardCar:FC<Propscar> = ({car}) => {
   const {placa, marca, modelo,  year, vin } = car
 
   return (
-    <Card sx={{ maxWidth: 250, padding: 1}}>
+    <Card sx={{ maxWidth: 250, padding: 2}}>
       <CardMedia sx={{}}>
         
         <Image

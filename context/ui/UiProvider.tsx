@@ -84,8 +84,9 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
 
             const {data} = await tesloApi.post('/cliente/car', {car})
 
-            console.log(data)
-            dispatch({type: '[UI] - insertCar' , payload: data.car})
+
+
+            dispatch({type: '[UI] - insertCar' , payload: [...state.cars, data.car] })
             return {
                 hasError: false
             }

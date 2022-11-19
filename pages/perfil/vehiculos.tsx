@@ -31,6 +31,8 @@ const VehiculosPage: NextPage = () => {
 
         <CarInfo />
 
+        <ListCars />
+
         
  
       </Grid> 
