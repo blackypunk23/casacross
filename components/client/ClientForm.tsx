@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { AuthContext, UiContext } from "../../context";
+import { useRouter } from 'next/router';
+
 
 type FormData = {
   user_id: string;
@@ -23,17 +25,17 @@ type FormData = {
   direccion: string; 
 };
 
-
-
-
 const ClientForm:FC = () => {
 
   const { user } = useContext(AuthContext);
-    const {crearCliente} = useContext(UiContext); 
+    const {crearCliente, cliente} = useContext(UiContext); 
 
   let userdata = JSON.parse(JSON.stringify(user)); 
 
   const empresas = ["BANPRO","ALMEXSA","PROVALORES"]
+  const [btnguardar, setBtnguardar] = useState(true);
+
+  const router = useRouter();
 
   const {
     register,
@@ -56,6 +58,8 @@ const ClientForm:FC = () => {
     const onSubmitClientForm = (data: FormData) => {
     console.log('datos a guardar', data)
     crearCliente(data);
+    setBtnguardar(false)
+    router.push('/perfil/vehiculos')
   };
 
   return (
@@ -134,14 +138,16 @@ const ClientForm:FC = () => {
         </Grid>
 
         <Box sx={{ mt: 5 }} display="flex" justifyContent="center">
-          <Button
+          
+        { btnguardar ? <Button
             type="submit"
             color="primary"
             className="circular-btn"
             size="large"
           >
             Guardar Datos
-          </Button>
+          </Button> : null}
+          
         </Box>
       </form>
     </Box>

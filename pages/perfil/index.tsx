@@ -28,9 +28,6 @@ const PerfilPage: NextPage = () => {
 
   const {user} = useContext(AuthContext);
 
-  console.log('usuario', user)
-
-
   
   return (
     <MainLayout title={"Casa Cross"} pageDescription={"Perfil"}>

@@ -1,18 +1,12 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
-
 import { dbUsers } from '../../../database';
-import { IUser } from '../../../interfaces/user';
-import { Session } from 'inspector';
-
 
 export default NextAuth({
   // Configure one or more authentication providers
-  providers: [
-    
+  providers: [    
     // ...add more providers here
-
     Credentials({
       name: 'Custom Login',
       credentials: {
@@ -22,21 +16,18 @@ export default NextAuth({
       async authorize(credentials) {
         console.log({credentials})
         // return { name: 'Juan', correo: 'juan@google.com', role: 'admin' };
-
-        return await dbUsers.checkUserEmailPassword( credentials!.email, credentials!.password );
-
+       
+        const data =  await dbUsers.checkUserEmailPassword( credentials!.email, credentials!.password );
+        console.log('retornando del dbUser', JSON.parse(JSON.stringify(data)))
+        return JSON.parse(JSON.stringify(data))
       }
     }),
-
-
     GithubProvider({
       // clientId: process.env.GITHUB_ID,
       // clientSecret: process.env.GITHUB_SECRET,
       clientId: 'ca349e1b9b67b2480420',
       clientSecret:'867c44c507144f8cb571ae9e838d2673a35d3b0f'
     }),
-
-
   ],
 
   // Custom Pages
@@ -98,10 +89,10 @@ export default NextAuth({
 
       //   session.user = token.user as any
       // }
-      session.accessToken = token.accessToken;
-      session.user = token.user as any;
+      // session.accessToken = token.accessToken;
+       session.user = token.user as any;
 
-      return session;
+        return await JSON.parse(JSON.stringify(session))
 
       
      
