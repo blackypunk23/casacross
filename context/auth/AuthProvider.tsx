@@ -81,6 +81,11 @@ export const AuthProvider:FC<reactChildren> = ({ children }: reactChildren) => {
     const registerUser = async( name: string, email: string, password: string ): Promise<{hasError: boolean; message?: string}> => {
         try {
             const { data } = await tesloApi.post('/user/register', { name, email, password });
+            //envio de correo 
+            const enviocorreo = await tesloApi.post('utils/email',{nombre: name, correo: email, asunto: 'Registro Exitoso', tipo: 'Bienvenida' })
+
+            console.log('envio correo',enviocorreo)
+            //
             const { token, user } = data;
             Cookies.set('token', token );
             dispatch({ type: '[Auth] - Login', payload: user });

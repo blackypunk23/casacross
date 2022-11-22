@@ -1,32 +1,21 @@
 import { NextPage } from "next";
 import { MainLayout } from "../../components/layouts";
-
-import type { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
-
-import { IUser } from "../../interfaces";
+import { useSession } from "next-auth/react";
 import { Divider, Typography, Paper, Grid } from "@mui/material";
 import ClientForm from "../../components/client/ClientForm"
-
-import { dbCliente } from "../../database";
-import { ICliente } from "../../interfaces/cliente";
-
-import { ClientData } from "../../components/client/ClientData";
-import { CarInfo } from "../../components/client";
-
 import { AuthContext } from '../../context/'
 import {useContext} from 'react';
-import { env } from "process";
+import router from 'next/router'
 
-// interface Props {
-//   user?: IUser;
-//   // cliente?: ICliente ;
-//   // info: boolean;
-// }
 
 const PerfilPage: NextPage = () => {
 
   const {user} = useContext(AuthContext);
+  const { status } = useSession()   
+
+  if (status === "unauthenticated") {    
+    router.push('/auth/login')
+  }
 
   
   return (

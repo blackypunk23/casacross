@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next'
 import NextLink from 'next/link';
-import { signIn, getSession, getProviders } from 'next-auth/react';
+import { signIn, getSession, getProviders, useSession } from 'next-auth/react';
 
 import { Box, Button, Chip, Divider, Grid, Link, TextField, Typography } from '@mui/material';
 import { ErrorOutline } from '@mui/icons-material';
@@ -27,6 +27,14 @@ const LoginPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [ showError, setShowError ] = useState(false);
+
+    const { status } = useSession()   
+
+    if (status === "authenticated") {
+      
+      router.push('/perfil')
+    }
+  
     
     const [providers, setProviders] = useState<any>({});
 
@@ -169,28 +177,28 @@ const LoginPage = () => {
 // - Only if you need to pre-render a page whose data must be fetched at request time
 
 
-export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+// export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
     
-    const session = await getSession({ req });
-    // console.log({session});
-    // console.log('variable de entorno'+ ' ' + process.env.NEXTAUTH_URL);
+//     const session = await getSession({ req });
+//     // console.log({session});
+//     // console.log('variable de entorno'+ ' ' + process.env.NEXTAUTH_URL);
 
-    const { p = '/' } = query;
+//     const { p = '/' } = query;
 
-    if ( session ) {
-        return {
-            redirect: {
-                destination: p.toString(),
-                permanent: false
-            }
-        }
-    }
+//     if ( session ) {
+//         return {
+//             redirect: {
+//                 destination: p.toString(),
+//                 permanent: false
+//             }
+//         }
+//     }
 
 
-    return {
-        props: { }
-    }
-}
+//     return {
+//         props: { }
+//     }
+// }
 
 
 

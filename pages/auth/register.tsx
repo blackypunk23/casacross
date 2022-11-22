@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 
 import NextLink from 'next/link';
-import { signIn, getSession } from 'next-auth/react';
+import { signIn, getSession, useSession } from 'next-auth/react';
 
 import { useForm } from 'react-hook-form';
 import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/material';
@@ -25,6 +25,15 @@ const RegisterPage = () => {
 
     const router = useRouter();
     const { registerUser } = useContext( AuthContext );
+
+    const { status } = useSession()   
+
+  if (status === "authenticated") {
+    
+    router.push('/perfil')
+  }
+
+  
 
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
