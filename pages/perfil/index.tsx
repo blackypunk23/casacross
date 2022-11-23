@@ -28,20 +28,7 @@ const PerfilPage: NextPage = () => {
       </Typography>
 
       <Divider />
-
-      {user ? <ClientForm  /> : null}
-
-      
-
-      {/* {!info ?
-
-      <ClientForm userdata={user} clientedata={cliente} />
-
-      : 
-      
-      <ClientData clientedata={cliente} />
-      
-      } */}
+      {user ? <ClientForm  /> : null}      
 
       <Grid>
 
