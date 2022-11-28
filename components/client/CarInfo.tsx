@@ -29,7 +29,7 @@ export const CarInfo: FC = ( ) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    resetField,
   } = useForm<FormData>({
     defaultValues: {
        user_id: '',
@@ -52,6 +52,13 @@ let userdata = JSON.parse(JSON.stringify(user));
     }
     console.log('onSubmit', newdata);
      crearCar(newdata)
+
+     resetField("placa")
+     resetField("marca")
+     resetField("modelo")
+     resetField("year")
+     resetField("vin")
+
   };
 
 
@@ -137,7 +144,7 @@ let userdata = JSON.parse(JSON.stringify(user));
             className="circular-btn"
             size="large"
           >
-            Guardar Datos
+            Agregar Vehiculo
           </Button>
         </Box>
       </form>

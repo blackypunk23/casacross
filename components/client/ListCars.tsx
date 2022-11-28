@@ -8,22 +8,33 @@ import { Button, Card, CardActions, CardContent, CardMedia, Grid, ListItem, Pape
 import Logocc from '../../public/cc/CC-logo-White.png'
 import Image from 'next/image'
 import {useContext} from 'react';
-import { UiContext } from '../../context';
+import { UiContext, AuthContext } from '../../context';
+import {useEffect} from 'react';
 
- interface Props {
-  usercars: ICar[];
-  
-}
-
+ 
 interface Propscar { 
   car: ICar;
-
 }
 const ListCars:FC = ( ) => {
 
-  const { cars} = useContext(UiContext);
+  const { cars, listarCars} = useContext(UiContext);
+  const { user} = useContext(AuthContext);
 
   console.log('CARS:',cars)
+
+  
+  const cargarCars = async ()=> {
+
+    if (user){
+      const {id} = JSON.parse(JSON.stringify(user));
+      await listarCars(id)
+    }
+    
+  }
+
+  useEffect( ()=>{
+   cargarCars()
+  },[])
 
 
 

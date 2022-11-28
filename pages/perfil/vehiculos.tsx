@@ -31,6 +31,8 @@ const VehiculosPage: NextPage = () => {
 
         <CarInfo />
 
+        <Divider sx={{p: 1}} />
+
         <ListCars />
 
         

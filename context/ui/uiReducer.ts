@@ -7,6 +7,7 @@ type UiActionType =
    | { type: '[UI] - ToggleMenu' } 
    | { type: '[UI] - getUser', payload: ICliente } 
    |  {type: '[UI] - insertCar', payload: ICar[] }
+   |  {type: '[UI] - ListarCars', payload: ICar[] }
 
 
 export const uiReducer = ( state: UiState, action: UiActionType ): UiState => {
@@ -24,6 +25,7 @@ export const uiReducer = ( state: UiState, action: UiActionType ): UiState => {
          }
 
       case '[UI] - insertCar':
+      case '[UI] - ListarCars':   
          return {
             ...state,
             cars:  [...action.payload] 

@@ -49,11 +49,11 @@ export const SideMenu = () => {
                             
                             <Divider/>
 
-                            <ListItem button onClick={() => navigateTo('/consultas')}>
+                            <ListItem button onClick={() => navigateTo('/solicitudes')}>
                                 <ListItemIcon>
                                     <TaxiAlertOutlined/>
                                 </ListItemIcon>
-                                <ListItemText primary={'Mis Consultas de Repuestos'} />
+                                <ListItemText primary={'Mis Solicitudes de Repuestos'} />
                             </ListItem>
                             
                             <Divider/>                            

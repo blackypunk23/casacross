@@ -17,7 +17,8 @@ interface ContextProps {
         hasError: boolean;
         message?: string;
     }>;
-    getCliente: (cliente: ICliente) => void;
+    getCliente: (id: string) => void;
+    listarCars: (id: string) => void;
     crearCar: (car: ICar) => Promise<{
         hasError: boolean;
         message?: string;

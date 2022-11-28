@@ -5,7 +5,6 @@ import axios from 'axios';
 import { tesloApi } from '../../api';
 
 
-
 export interface UiState {
     isMenuOpen: boolean;
     cliente : ICliente ;
@@ -41,17 +40,21 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
         dispatch({ type: '[UI] - ToggleMenu' });
     }
 
-    const getCliente =  async ( cliente : ICliente) => {
+    const getCliente =  async ( id : string) => {
+
+        const {data} = await tesloApi.get(`/cliente/${id}`)
+
+      
       
 
-        dispatch({type: '[UI] - getUser' , payload: cliente})
+        dispatch({type: '[UI] - getUser' , payload: data})
 
     }
 
 
     const crearCliente = async(cliente: ICliente): Promise<{hasError: boolean; message?: string}> => {
 
-        console.log('desde creacliente', JSON.stringify(cliente))
+        
         try {
 
             const {data} = await tesloApi.post('/cliente/agregar', {cliente})
@@ -79,7 +82,7 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
 
     const crearCar = async(car: ICar): Promise<{hasError: boolean; message?: string}> => {
 
-        console.log(`desde context ${JSON.stringify(car)}`)
+       
         try {
 
             const {data} = await tesloApi.post('/cliente/car', {car})
@@ -106,6 +109,18 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
         }
     }
 
+
+    const listarCars =  async ( id : string) => {
+
+        const {data} = await tesloApi.get(`/cliente/cars/${id}`)
+
+        
+
+        dispatch({type: '[UI] - ListarCars' , payload: data})
+
+    }
+
+
     
 
 
@@ -117,6 +132,7 @@ export const UiProvider:FC<reactChildren> = ({ children}) => {
             crearCliente,
             getCliente,
             crearCar,
+            listarCars
         }}>
             { children }
         </UiContext.Provider>
